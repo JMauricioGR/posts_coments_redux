@@ -1,10 +1,25 @@
+import { useSelector } from "react-redux"
+import Logged from "./components/Logged"
+import PostForm from "./components/PostForm"
+import PostsList from "./components/PostsList"
+import { stateType } from "./state/store"
 
 
 function App() {
 
+  const logged = useSelector((state:stateType) => state.logged)
+
   return (
     <div className="App">
-      <h1>Hello from my app</h1>
+      <Logged />
+      {logged?
+      <div>
+        <PostForm />
+        <PostsList />
+      </div>:
+      <h1>You are not logged in</h1> 
+    }
+      
     </div>
   )
 }
